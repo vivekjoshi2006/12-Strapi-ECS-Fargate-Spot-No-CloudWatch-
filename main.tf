@@ -2,9 +2,7 @@ provider "aws" {
   region = "us-east-1"
 }
 
-# ----------------------------
-# 1️⃣ NETWORKING (Default VPC)
-# ----------------------------
+# NETWORKING (Default VPC)
 
 resource "aws_default_vpc" "default" {}
 
@@ -36,9 +34,7 @@ resource "aws_security_group" "strapi_sg" {
   }
 }
 
-# ----------------------------
-# 2️⃣ ECS CLUSTER (SPOT ONLY)
-# ----------------------------
+# ECS CLUSTER (SPOT ONLY)
 
 resource "aws_ecs_cluster" "strapi_cluster" {
   name = "strapi-cluster-vivek-v12"
@@ -55,9 +51,7 @@ resource "aws_ecs_cluster_capacity_providers" "strapi_spot" {
   }
 }
 
-# ----------------------------
-# 3️⃣ TASK DEFINITION
-# ----------------------------
+# TASK DEFINITION
 
 resource "aws_ecs_task_definition" "strapi" {
   family                   = "strapi-task-vivek"
@@ -93,9 +87,7 @@ resource "aws_ecs_task_definition" "strapi" {
   ])
 }
 
-# ----------------------------
-# 4️⃣ ECS SERVICE (FARGATE SPOT)
-# ----------------------------
+# ECS SERVICE (FARGATE SPOT)
 
 resource "aws_ecs_service" "strapi_service" {
   name            = "strapi-service-vivek"
